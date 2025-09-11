@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, rgb(13, 17, 23), rgb(35, 39, 47));
+            min-height: 100vh;
+            color: rgb(230, 237, 243);
+        }
+
+        .navbar {
+            background: rgba(22, 27, 34, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-link {
+            color: rgb(201, 209, 217) !important;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: rgb(230, 237, 243) !important;
+        }
+
+        .navbar-brand {
+            color: white !important;
+        }
+
+        .projects-section {
+            padding: 120px 0;
+            min-height: 100vh;
+        }
+
+        .section-title {
+            color: rgb(88, 166, 255);
+            font-weight: 700;
+            margin-bottom: 50px;
+            position: relative;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: rgb(88, 166, 255);
+        }
+
+        .project-card {
+            background: rgba(22, 27, 34, 0.7);
+            border: 1px solid rgba(48, 54, 61, 0.6);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            background: rgba(22, 27, 34, 0.9);
+        }
+
+        .project-title {
+            color: rgb(88, 166, 255);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .project-tech {
+            color: rgb(201, 209, 217);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .tech-badge {
+            background: rgba(48, 54, 61, 0.6);
+            color: rgb(201, 209, 217);
+            padding: 5px 12px;
+            border-radius: 15px;
+            margin: 0 5px 5px 0;
+            display: inline-block;
+            font-size: 0.8rem;
+        }
+
+        .project-links {
+            margin-top: 20px;
+        }
+
+        .project-link {
+            color: rgb(88, 166, 255);
+            text-decoration: none;
+            margin-right: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: rgb(121, 184, 255);
+        }
+
+        .back-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(22, 27, 34, 0.8);
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            background: rgba(48, 54, 61, 0.8);
+            color: rgb(230, 237, 243);
+        }
+
+        .footer {
+            background: rgba(22, 27, 34, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(48, 54, 61, 0.6);
+            position: relative;
+            margin-top: 4rem;
+        }
+
+        .footer a {
+            color: rgb(201, 209, 217);
+            transition: all 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: rgb(88, 166, 255);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin: 1rem 0;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: rgb(88, 166, 255);
+            color: rgb(230, 237, 243);
+            transform: translateY(-3px);
+        }
+
+        .footer .footer-links a {
+            position: relative;
+        }
+
+        .footer .footer-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: rgb(88, 166, 255);
+            transition: width 0.3s ease;
+        }
+
+        .footer .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: rgb(201, 209, 217);
+        }
+
+        @media (max-width: 768px) {
+            .footer {
+                text-align: center;
+            }
+
+            .footer .col-md-4:not(:last-child) {
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">Portfolio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="projects.html">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="skills.html">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="projects-section">
+        <div class="container">
+            <h2 class="section-title">My Projects</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="project-card">
+                        <h3 class="project-title">Employee Management System</h3>
+                        <div class="project-tech mb-3">
+                            <span class="tech-badge">Node.js</span>
+                            <span class="tech-badge">MongoDB</span>
+                            <span class="tech-badge">Express</span>
+                        </div>
+                        <p>A comprehensive web application for managing employee records, attendance, and performance
+                            tracking. Features include user authentication, role-based access, and real-time updates.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <div class="project-card">
+                        <h3 class="project-title">ChessPP</h3>
+                        <div class="project-tech mb-3">
+                            <span class="tech-badge">C++</span>
+                            <span class="tech-badge">SDL2</span>
+                            <span class="tech-badge">OOP</span>
+                        </div>
+                        <p>An object-oriented chess simulation project with graphical interface using SDL2. Implements
+                            standard chess rules, move validation, and basic AI for computer opponent.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <div class="project-card">
+                        <h3 class="project-title">V.O.I.C.Y</h3>
+                        <div class="project-tech mb-3">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Vosk</span>
+                            <span class="tech-badge">Speech Recognition</span>
+                        </div>
+                        <p>Voice Operated Intelligent Command Yard - An offline voice assistant that processes voice
+                            commands and provides intelligent responses using local processing.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="project-card">
+                        <h3 class="project-title">Tic-Tac-Toe</h3>
+                        <div class="project-tech mb-3">
+                            <span class="tech-badge">HTML</span>
+                            <span class="tech-badge">CSS</span>
+                            <span class="tech-badge">JavaScript</span>
+                        </div>
+                        <p>A web-based Tic-Tac-Toe game built with HTML, CSS, and JavaScript, 
+                            featuring interactive UI and dynamic win/draw detection. </p>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <a href="index.html" class="back-btn">
+        <i class="bi bi-arrow-left"></i>
+    </a>
+
+    <footer class="footer mt-auto py-4">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="col-md-4 text-center text-md-start">
+                    <h4 class="text-light mb-3">Kaushik Muliya</h4>
+                    <p class="text-secondary mb-0">Computer Science Engineering Student</p>
+                    <p class="text-secondary">Vivekananda College of Engineering</p>
+                </div>
+
+                <div class="col-md-4 text-center">
+                    <div class="footer-links mb-3">
+                        <a href="about.html" class="text-decoration-none mx-2">About</a>
+                        <a href="projects.html" class="text-decoration-none mx-2">Projects</a>
+                        <a href="skills.html" class="text-decoration-none mx-2">Skills</a>
+                        <a href="contact.html" class="text-decoration-none mx-2">Contact</a>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/yourusername" target="_blank" aria-label="GitHub">
+                            <i class="bi bi-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/yourusername" target="_blank" aria-label="LinkedIn">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                        <a href="https://instagram.com/yourusername" target="_blank" aria-label="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-4 text-center text-md-end">
+                    <p class="text-secondary mb-1">Email: kaushikmuliya82@gmail.com</p>
+                    <p class="text-secondary mb-3">Phone: +91 9876543210</p>
+                    <p class="copyright mb-0">© 2023 Kaushik Muliya. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
