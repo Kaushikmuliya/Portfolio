@@ -28,6 +28,7 @@
 
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
 
         .hero-section {
@@ -38,13 +39,18 @@
             align-items: center;
             position: relative;
             overflow: hidden;
+            padding: 80px 0 20px; /* Add top padding for navbar */
         }
 
         .navbar {
-            background: rgba(22, 27, 34, 0.8);
+            background: rgba(22, 27, 34, 0.95);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
         }
 
         .nav-link {
@@ -76,26 +82,29 @@
         .hero-content {
             text-align: center;
             animation: fadeIn 1s ease-out;
+            width: 100%;
         }
 
         .hero-title {
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 5vw, 3.5rem); /* Responsive font size */
             font-weight: 700;
             margin-bottom: 1.5rem;
             background: linear-gradient(45deg, var(--text-primary), var(--accent-primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            word-wrap: break-word;
         }
 
         .hero-subtitle {
-            font-size: 1.25rem;
+            font-size: clamp(1rem, 3vw, 1.25rem); /* Responsive font size */
             color: var(--text-secondary);
             margin-bottom: 2rem;
+            padding: 0 1rem;
         }
 
         .profile-img-container {
-            width: 200px;
-            height: 200px;
+            width: clamp(150px, 25vw, 200px); /* Responsive size */
+            height: clamp(150px, 25vw, 200px);
             margin: 0 auto 2rem;
             position: relative;
             border-radius: 50%;
@@ -114,11 +123,13 @@
         .cta-btn {
             padding: 0.875rem 2rem;
             border-radius: 2rem;
-            font-size: 1.125rem;
+            font-size: 1rem;
             transition: all 0.3s ease;
             text-decoration: none;
-            margin: 0 0.5rem;
+            margin: 0.5rem;
             display: inline-block;
+            min-width: 150px;
+            text-align: center;
         }
 
         .primary-btn {
@@ -150,7 +161,6 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -181,76 +191,155 @@
         }
 
         @keyframes float {
-
-            0%,
-            100% {
+            0%, 100% {
                 transform: translateY(0);
             }
-
             50% {
                 transform: translateY(-10px);
             }
         }
 
+        /* Remove typing animation on mobile for better performance */
         .typing-text {
-            border-right: 3px solid var(--accent-primary);
-            animation: typing 3.5s steps(40, end), blink .75s step-end infinite;
-            white-space: nowrap;
-            overflow: hidden;
+            animation: fadeIn 1s ease-out;
         }
 
-        @keyframes typing {
-            from {
-                width: 0
-            }
-
-            to {
-                width: 100%
-            }
-        }
-
-        @keyframes blink {
-
-            from,
-            to {
-                border-color: transparent
-            }
-
-            50% {
-                border-color: var(--accent-primary)
-            }
-        }
-
+        /* Mobile-specific styles */
         @media (max-width: 768px) {
+            .hero-section {
+                padding: 100px 20px 40px;
+                min-height: calc(100vh - 60px);
+            }
+
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
+                line-height: 1.2;
             }
 
             .hero-subtitle {
-                font-size: 1.125rem;
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
+                line-height: 1.4;
+            }
+
+            .profile-img-container {
+                width: 150px;
+                height: 150px;
+                margin-bottom: 1.5rem;
             }
 
             .cta-btn {
                 display: block;
-                margin: 1rem auto;
-                max-width: 200px;
+                margin: 0.75rem auto;
+                max-width: 250px;
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .cta-buttons {
+                padding: 0 1rem;
             }
 
             .social-links {
-                position: relative;
-                left: 0;
-                top: 0;
+                position: static;
                 transform: none;
                 flex-direction: row;
                 justify-content: center;
                 margin-top: 2rem;
+                gap: 2rem;
+            }
+
+            .social-link {
+                animation: none; /* Remove float animation on mobile */
+            }
+
+            .navbar-brand {
+                font-size: 1.25rem;
+            }
+
+            .nav-link {
+                padding: 0.75rem 1rem;
+            }
+
+            /* Remove typing animation border on mobile */
+            .typing-text {
+                border-right: none;
+            }
+        }
+
+        /* Extra small mobile devices */
+        @media (max-width: 480px) {
+            .hero-section {
+                padding: 90px 15px 30px;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+                padding: 0 0.5rem;
+            }
+
+            .profile-img-container {
+                width: 120px;
+                height: 120px;
+            }
+
+            .cta-btn {
+                padding: 0.875rem 1.25rem;
+                font-size: 0.95rem;
+                min-width: 200px;
+            }
+
+            .social-links {
+                gap: 1.5rem;
+                margin-top: 1.5rem;
+            }
+
+            .social-link {
+                font-size: 1.25rem;
+            }
+        }
+
+        /* Landscape mobile orientation */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .hero-section {
+                min-height: auto;
+                padding: 80px 20px 20px;
+            }
+
+            .profile-img-container {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 1rem;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .cta-btn {
+                padding: 0.75rem 1.5rem;
+                margin: 0.25rem;
+            }
+
+            .social-links {
+                margin-top: 1rem;
             }
         }
     </style>
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html">Kaushik Muliya</a>
@@ -278,7 +367,7 @@
     </nav>
 
     <section class="hero-section">
-        <div class="social-links">
+        <div class="social-links d-none d-md-flex">
             <a href="https://github.com/yourusername" target="_blank" class="social-link" data-aos="fade-right"
                 data-aos-delay="100">
                 <i class="bi bi-github"></i>
@@ -306,6 +395,19 @@
                     <a href="projects.html" class="cta-btn primary-btn">View Projects</a>
                     <a href="contact.html" class="cta-btn secondary-btn">Get in Touch</a>
                 </div>
+                
+                <!-- Mobile social links -->
+                <div class="social-links d-md-none">
+                    <a href="https://github.com/yourusername" target="_blank" class="social-link">
+                        <i class="bi bi-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/yourusername" target="_blank" class="social-link">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                    <a href="https://instagram.com/yourusername" target="_blank" class="social-link">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -316,10 +418,10 @@
     <script>
         AOS.init({
             duration: 800,
-            once: true
+            once: true,
+            disable: 'mobile' // Disable AOS on mobile for better performance
         });
     </script>
-
 </body>
 
 </html>
